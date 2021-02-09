@@ -1,10 +1,10 @@
 /*
 Date created: 29012021
 This program is a basic Hello World 
-program. I'm still working on be 
+program. I'm still working on becoming 
 proficient at making commits and 
 pushing the changes made to my GitHub 
-accont.
+account.
 Author: Joshua Vega
 */
 #include <stdio.h>
