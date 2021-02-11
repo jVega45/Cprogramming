@@ -16,11 +16,12 @@ struct person
 };
 
 // Function prototypes below
-int validateUsrInput(struct person*, int);
+int checkGender(struct person*, int);
 
 int main()
 {
     struct person list[LIST_LENGTH];
+
     int usrListLength = 0;
     printf("\n======Welcome to the Create a List of People Program======\n");
     printf("\nEnter people's names, age, and gender in that order.\n\n");
@@ -31,7 +32,7 @@ int main()
     scanf("%d", &usrListLength);
     while(usrListLength > 50 || usrListLength <= 0)
     {
-        printf("Please enter a valid number of people on the list. Must be < 50 and greater than 0\n");
+        printf("Please enter a valid number of people on the list. Must be <= 50 and greater than 0\n");
         scanf("%d", &usrListLength);
     }
     printf("\n\n-----Please enter the people to your list; name first, then age, and then gender-----\n\n");
@@ -40,7 +41,7 @@ int main()
     for(i = 0; i < usrListLength; ++i)
     {
         scanf("%s %d %s", list[i].name, &list[i].age, list[i].gender);
-        while(validateUsrInput(list, i) == 0)
+        while(checkGender(list, i) == 0)
         {
             printf("\nError!...Please enter valid person entries by adhering to the rules\n");
             scanf("%s %d %s", list[i].name, &list[i].age, list[i].gender);
@@ -57,7 +58,7 @@ int main()
     return 0;
 }
 
-int validateUsrInput(struct person* data, int index)
+int checkGender(struct person* data, int index)
 {
     int valid = 0; // valid = 1, not valid = 0
 

@@ -15,7 +15,7 @@ int main(){
     int i; // increment variable for loop
     for(i = 10; i > 0; i--)
     {
-        printf("%d...\n", i);             
+        printf("\n%d...\n", i);             
     }
     printf("-----Blast Off!-----");
 
