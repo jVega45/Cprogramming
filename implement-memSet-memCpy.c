@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <stdlib.h>
+
 /**
  * Sets the first n bytes pointed to by str to the value specified by c
  *
