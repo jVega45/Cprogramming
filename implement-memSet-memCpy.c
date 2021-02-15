@@ -46,7 +46,7 @@ void *sp_memcpy(void *dest, const void *src, size_t n)
 
 int main (int argc, char* argv[])
 {
-    //printf("\nThis is a test\n");
+    printf("\nThis is a test\n");
     int arr1[2] = {1, 2};
     int arr2[2] = {3, 4};
     sp_memcpy(arr1, arr2, 2 * sizeof(int));
