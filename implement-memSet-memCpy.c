@@ -11,10 +11,16 @@
  */
 void *sp_memset(void *dest, int c, size_t n) 
 {
+    if(dest == NULL)
+    {
+        printf(">>>invalid ptr!<<<");
+        return (void*)-1;
+    }
+
     unsigned char* ptr = dest; // convert the void ptr to a ptr to an unsigned char
     while(n > 0)
     {
-        *ptr = c; // cannot dereference a void pointer, therefore use the ptr variable
+        *ptr = (unsigned char)c; // cannot dereference a void pointer, therefore use the ptr variable
         ptr++;
         n--;
     }
@@ -31,6 +37,12 @@ void *sp_memset(void *dest, int c, size_t n)
  */
 void *sp_memcpy(void *dest, const void *src, size_t n) 
 {
+    if((dest == NULL) || (src == NULL))
+    {
+        printf(">>>invalid ptr!<<<");
+        return (void*)-1;
+    }
+
     // typecast src and dest addresses to pointers to chars
     char* cpySrc = (char*)src;
     char* cpyDest = (char*)dest;
@@ -46,16 +58,12 @@ void *sp_memcpy(void *dest, const void *src, size_t n)
 
 int main (int argc, char* argv[])
 {
-    int i;
-    for(i = 0; i < 3; i++)
-    {
-        printf("\nThis is a test\n");
-    }
     int arr1[2] = {1, 2};
     int arr2[2] = {3, 4};
-    sp_memcpy(arr1, arr2, 2 * sizeof(int));
+    char* nullPtr = NULL;
+    sp_memcpy(arr1, nullPtr, 2 * sizeof(int));
     printf("\n%08x %08x\n", arr1[0], arr1[1]);
-    sp_memset(arr1, 1, 2 * sizeof(int));
+    sp_memset(nullPtr, 1, 2 * sizeof(int));
     printf("\n%08x %08x\n", arr1[0], arr1[1]);
     return 0;
 }
