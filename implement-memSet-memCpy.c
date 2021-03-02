@@ -63,7 +63,7 @@ int main (int argc, char* argv[])
     char* nullPtr = NULL;
     sp_memcpy(arr1, nullPtr, 2 * sizeof(int));
     printf("\n%08x %08x\n", arr1[0], arr1[1]);
-    sp_memset(nullPtr, 1, 2 * sizeof(int));
+    sp_memset(arr2, 1, 2 * sizeof(int));
     printf("\n%08x %08x\n", arr1[0], arr1[1]);
     return 0;
 }
