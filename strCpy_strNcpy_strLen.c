@@ -142,12 +142,12 @@ size_t sp_strlen(const char *str)
 int main()
 {
     char name1[8] = {'C', 'h', 'a', 'r', 'l', 'e', 's', '\0'};
-    char name2[10];
+    char name2[5];
     size_t len = 12;
     printf("\nName #1: %s\n", name1);
-
     sp_strncpy(name2, name1, len);
     printf("\nName #2: %s\n", name2);
+    
     printf("\nlength of name1: %zu\n", sp_strlen(name1));
     sp_strcpy(name2, name1);
     printf("After strcpy --> Name #1: %s Name #2: %s\n", name1, name2);
