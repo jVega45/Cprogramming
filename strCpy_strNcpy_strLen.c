@@ -23,7 +23,7 @@ void *sp_memset(void *dest, int c, size_t n)
     if(dest == NULL)
     {
         printf(">>>invalid ptr!<<<");
-        return (void*)-1;
+        return NULL;
     }
     unsigned char* ptr = dest; // convert the void ptr to a ptr to an unsigned char
     while(n > 0)
@@ -47,8 +47,8 @@ void *sp_memcpy(void *dest, const void *src, size_t n)
 {
     if((dest == NULL) || (src == NULL))
     {
-        (">>>invalid ptr!<<<");
-        return (void*)-1;
+        printf(">>>invalid ptr!<<<");
+        return NULL;
     }
     // typecast src and dest addresses to pointers to chars
     char* cpySrc = (char*)src;
@@ -71,6 +71,7 @@ void *sp_memcpy(void *dest, const void *src, size_t n)
  */
 char *sp_strcpy(char *dest, const char *src)
 {
+    int index = 0;
     // check for NULL ptr
     if((dest == NULL) || (src == NULL))
     {
@@ -79,11 +80,11 @@ char *sp_strcpy(char *dest, const char *src)
     char* ptr = dest; // ptr variable to point to destination
 
     // copy C-string from src to dest
-    while(*src != '\0') 
+    while(src[index] != '\0') 
     {
-        *dest = *src;
-        dest++;
-        src++;
+        *dest = src[index];
+         dest++;
+         index++;
     }
    *dest = '\0';  // add the null terminating character to end of dest
 
@@ -102,20 +103,25 @@ char *sp_strcpy(char *dest, const char *src)
  */
 char *sp_strncpy(char *dest, const char *src, size_t n)
 {
+    int index;
+    char *ptr;
+    printf("\nSize of src %ld\n", sizeof(src));
+    printf("\nSize of dest %ld\n", sizeof(dest)/sizeof(dest[0]));
     //  check for NULL ptrs
     if((dest == NULL) || (src == NULL))
     {
         return NULL;
     }
-    char* ptr = dest;
+    ptr = dest;
 
-    // copy src until NULL character is reached in src then concat NULL to dest for rest of n
-    while(*src != '\0' && n--)
+    for(index = 0; index < (n - 1); index++)
     {
-        *dest = *src;
+        if(src[index] == '\0')
+            break;
+        *dest = src[index];
         dest++;
-        src++;
     }
+
     *dest = '\0';
     return ptr;
 }
@@ -131,33 +137,30 @@ size_t sp_strlen(const char *str)
 {
     size_t strLength = 0;
 
-    while(*str != '\0')
+    while(str[strLength] != '\0')
     {
         strLength++;
-        str++;
     }
+
     return strLength;
 }
 
 int main()
 {
     char name1[8] = {'C', 'h', 'a', 'r', 'l', 'e', 's', '\0'};
-    char name2[5];
-    size_t len = 12;
+    char name2[9];
+    
+    printf("\nSize of src: %ld\n", sizeof(name1));
+    printf("\nSize of dest: %ld\n", sizeof(name2));
+
     printf("\nName #1: %s\n", name1);
-    sp_strncpy(name2, name1, len);
+    sp_strncpy(name2, name1, sizeof(name2));
     printf("\nName #2: %s\n", name2);
+
     
     printf("\nlength of name1: %zu\n", sp_strlen(name1));
     sp_strcpy(name2, name1);
     printf("After strcpy --> Name #1: %s Name #2: %s\n", name1, name2);
-
-    int i;
-    printf("\nPrinting Name #2:\n");
-    for(i = 0; i <= sp_strlen(name2); i++)
-    {
-        printf("\n%c\n", name2[i]);    
-    }
 
     return 0;
 }
