@@ -17,7 +17,7 @@ int main(){
     {
         printf("\n%d...\n", i);             
     }
-    printf("-----Blast Off!-----");
+    printf("-----Take Off!-----\n");
 
     return 0;
 }
